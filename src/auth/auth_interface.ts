@@ -23,3 +23,13 @@ export interface IRegister {
   height: number;
   goal: "Bulking" | "Cutting" | "Maintenance"
 }
+
+export interface ILogin {
+  email: string;
+  password: string;
+}
+
+export interface IVerif {
+  email: string;
+  code: string;
+}
