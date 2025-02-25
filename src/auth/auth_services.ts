@@ -73,7 +73,7 @@ export class AuthService {
     }
   }
 
-  async emailVerification(data: any) {
+  async emailVerification(data: IVerif) {
     try {
       const user = await prisma.user.findUnique({ where: { email: data.email } });
 
