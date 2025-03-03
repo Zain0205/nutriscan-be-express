@@ -14,24 +14,54 @@ datasource db {
 }
 
 model User {
-  id                  Int    @id @default(autoincrement())
+  id                  Int       @id @default(autoincrement())
   email               String    @unique
   password            String
   name                String
   age                 Int?
   height              Float?
   weight              Float?
-  goal                Goal 
+  goal                Goal
   goalCalories        Int       @default(2000) @map("goal_calories")
   isVerified          Boolean   @default(false)
   verificationCode    String?
   verificationExpires DateTime?
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
+
+  foodLogs FoodLog[]
 }
 
 enum Goal {
   Bulking
   Cutting
   Maintenance
+}
+
+model Food {
+  id          Int      @id @default(autoincrement())
+  name        String
+  calories    Float
+  protein     Float
+  fat         Float
+  carbs       Float
+  servingSize String
+  createdAt   DateTime @default(now())
+
+  foodLogs FoodLog[]
+}
+
+model FoodLog {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  foodId       Int
+  quantity     Float 
+  totalCal     Float
+  totalProtein Float
+  totalFat     Float
+  totalCarbs   Float
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+  food Food @relation(fields: [foodId], references: [id])
 }
