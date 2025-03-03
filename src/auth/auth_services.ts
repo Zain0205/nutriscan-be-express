@@ -4,10 +4,15 @@ import { IUser, IRegister, ILogin, IVerif } from "./auth_interface";
 
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import { dot } from "node:test/reporters";
+
+
+dotenv.config();
 
 export class AuthService {
   private emailService: EmailService = new EmailService();
-  private readonly JWT_SECRET: string = process.env.JWT_SECRET || "";
+  private readonly JWT_SECRET: string = process.env.JWT_SECRET as string;
 
   private verificationCodeGenerator(): string {
     return Math.floor(1000 + Math.random() * 9000).toString();
@@ -69,7 +74,6 @@ export class AuthService {
       };
     } catch (err) {
       throw err;
-      console.error(err);
     }
   }
 
