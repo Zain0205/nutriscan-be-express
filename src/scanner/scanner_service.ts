@@ -19,6 +19,8 @@ const AI_PROMPT = `Saya ingin kamu bertindak sebagai ahli gizi berpengalaman. To
   "rekomendasi": "rekomendasi kesehatan"
 }
 
+NOTE: jika gambar makanan yang dikirim tidak dapat di identifiasi maka makanan dianggap tidak teridentifikasi. Jika analisis tidak lengkap maka risiko dianggap sebagai "Analisis tidak lengkap" dan rekomendasi dianggap sebagai "Tidak dapat memberikan rekomendasi karena analisis tidak lengkap". Jika data tidak tersedia maka dianggap sebagai "Tidak tersedia".
+
 PENTING: Respons harus HANYA berisi objek JSON di atas, tanpa backticks atau penjelasan tambahan. Jangan gunakan frasa "Berikut adalah respons JSON:" atau sejenisnya.`;
 
 export class ScannerService {
